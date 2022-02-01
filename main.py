@@ -2,65 +2,72 @@ from functools import partial
 import tkinter as tk
 from turtle import onclick
 
-def calculate_unadjusted_salary(Salary, hours_per_week):
+def calculate_unadjusted_salary(salary, hours_per_week):
   
   # This assumes 5 working day schedule for the year
   working_days_per_year = 52*5
   
-  unadjusted_salary = Salary*hours_per_week*working_days_per_year
+  unadjusted_salary = int(salary)*int(hours_per_week)*int(working_days_per_year)
 
   return unadjusted_salary
 
-def calculate(Salary, hours_per_week, holidays, vacations):
+def calculate_adjusted_salary(salary, hours_per_week, holidays, vacations):
   
-  # calculate adjusted numbers
-  print('Success')
+  # This assumes 5 working day schedule for the year
+  working_days_per_year = 52*5
   
+  adjusted_days_off = int(holidays) + int(vacations)
+
+  adjusted_salary = int(salary)*int(hours_per_week)*(int(working_days_per_year) - int(adjusted_days_off))
+
+  return adjusted_salary
+
+# Calculates their unadjusted salary and adjusted salary
+def calculate(salary, hours, holidays, vacations):
+  
+  print(calculate_unadjusted_salary(salary, hours))
+  print(calculate_adjusted_salary(salary, hours, holidays, vacations))
 
 
-def main():
-  root = tk.Tk()
-  root.title("Salary Calculator")
-  root.geometry("300x300")
+root = tk.Tk()
+root.title("Salary Calculator")
+root.geometry("300x300")
 
 
-  # Takes in amount of Salary
-  salary_label = tk.Label(text="Salary Amount per Hour")
-  salary_label.pack()
-  salary_entry = tk.Entry(root)
-  salary_entry.pack()
- 
-
-  # Takes in amount of hours per week 
-  hours_per_week_label = tk.Label(text="Hours per Week")
-  hours_per_week_label.pack()
-  hours_per_week_entry = tk.Entry(root)
-  hours_per_week_entry.pack()
+# Takes in amount of Salary
+salary_label = tk.Label(text="Salary Amount per Hour")
+salary_label.pack()
+salary_entry = tk.Entry(root)
+salary_entry.pack()
 
 
-  # Takes in amount of holiday days off 
-  holiday_label = tk.Label(text="Holiday per year")
-  holiday_label.pack()
-  holiday_entry = tk.Entry(root)
-  holiday_entry.pack()
+# Takes in amount of hours per week 
+hours_per_week_label = tk.Label(text="Hours per Week")
+hours_per_week_label.pack()
+hours_per_week_entry = tk.Entry(root)
+hours_per_week_entry.pack()
 
 
-  # Takes in amount of vacation days off
-  vacations_days_label = tk.Label(text="Vacation days per year")
-  vacations_days_label.pack()
-  vacation_days_entry = tk.Entry(root)
-  vacation_days_entry.pack()
+# Takes in amount of holiday days off 
+holiday_label = tk.Label(text="Holiday per year")
+holiday_label.pack()
+holiday_entry = tk.Entry(root)
+holiday_entry.pack()
 
 
-  calculate_button = tk.Button(root, text='Calculate', command=partial(calculate, salary_entry, hours_per_week_entry, holiday_entry, vacation_days_entry))
-  calculate_button.pack()
+# Takes in amount of vacation days off
+vacations_days_label = tk.Label(text="Vacation days per year")
+vacations_days_label.pack()
+vacation_days_entry = tk.Entry(root)
+vacation_days_entry.pack()
 
 
-  root.mainloop()
+calculate_button = tk.Button(root, text='Calculate', command=lambda: calculate(salary_entry.get(), hours_per_week_entry.get(), holiday_entry.get(), vacation_days_entry.get()))
+calculate_button.pack()
 
 
-if __name__ == "__main__":
-  main()
+root.mainloop()
+
 
 
 
