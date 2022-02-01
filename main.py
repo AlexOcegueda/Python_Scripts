@@ -1,5 +1,15 @@
+#!/usr/bin/env python3
 from functools import partial
 import tkinter as tk
+
+'''''
+  Name: Salary Calculator
+  Programmer: Alex Ocegueda -> Git: https://github.com/AlexOcegueda
+  Version: 1.0
+  Description: Takes in your Salary per hour, total hours worked per week, how many days you work, and 
+                your holidays and vacations. It will display your salary before and after holidays are 
+                deducted.
+'''''
 
 def calculate_unadjusted_salary(salary, total_hours_per_week, days_per_week):
   
@@ -43,7 +53,7 @@ def calculate(salary, total_hours_per_week, days_per_week, holidays, vacations, 
 
 
 root = tk.Tk()
-root.title("Unadjusted and Adjusted Salary Calculator")
+root.title("Salary Calculator")
 root.geometry("300x300")
 
 
