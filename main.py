@@ -1,31 +1,39 @@
 from functools import partial
 import tkinter as tk
 
-def calculate_unadjusted_salary(salary, hours_per_week):
+def calculate_unadjusted_salary(salary, hours_per_week, days_per_week):
   
+  daily_hours = int(hours_per_week)/int(days_per_week)
+
   # This assumes 5 working day schedule for the year
-  working_days_per_year = 52*5
+  working_days_per_year = 52*int(days_per_week)
   
-  unadjusted_salary = int(salary)*int(hours_per_week)*int(working_days_per_year)
+  unadjusted_salary = int(salary)*int(daily_hours)*int(working_days_per_year)
 
   return unadjusted_salary
 
-def calculate_adjusted_salary(salary, hours_per_week, holidays, vacations):
-  
-  # This assumes 5 working day schedule for the year
-  working_days_per_year = 52*5
-  
-  adjusted_days_off = int(holidays) + int(vacations)
+def calculate_adjusted_salary(salary, hours_per_week, days_per_week, holidays, vacations):
 
-  adjusted_salary = int(salary)*int(hours_per_week)*(int(working_days_per_year) - int(adjusted_days_off))
+  daily_hours = int(hours_per_week)/int(days_per_week)
+
+  # This assumes 5 working day schedule for the year
+  working_days_per_year = 52*int(days_per_week)
+  
+  adjusted_days_off = int(working_days_per_year) - (int(holidays) + int(vacations))
+
+  adjusted_salary = int(salary)*int(daily_hours)*int(adjusted_days_off)
 
   return adjusted_salary
 
 # Calculates their unadjusted salary and adjusted salary
-def calculate(salary, hours, holidays, vacations):
+def calculate(salary, hours_per_week, days_per_week, holidays, vacations, root):
   
-  print(calculate_unadjusted_salary(salary, hours))
-  print(calculate_adjusted_salary(salary, hours, holidays, vacations))
+  adjusted_salary_label = tk.Label(root, text=calculate_adjusted_salary(salary, hours_per_week, days_per_week, holidays, vacations))
+  unadjusted_salary_label = tk.Label(root, text=calculate_unadjusted_salary(salary, hours_per_week, days_per_week))
+  
+  adjusted_salary_label.pack()
+  unadjusted_salary_label.pack()
+
 
 
 root = tk.Tk()
@@ -34,35 +42,40 @@ root.geometry("300x300")
 
 
 # Takes in amount of Salary
-salary_label = tk.Label(root, text="Salary Amount per Hour")
-salary_label.place(rely=.25, relx=.30, anchor=tk.CENTER)
+salary_label = tk.Label(root, text="Salary per Hour")
+salary_label.pack()
 salary_entry = tk.Entry(root)
-salary_entry.place(width=100, rely=.25, relx=.75, anchor=tk.CENTER)
+salary_entry.pack()
 
 
 # Takes in amount of hours per week 
 hours_per_week_label = tk.Label(root, text="Hours per Week")
-#hours_per_week_label.pack()
+hours_per_week_label.pack()
 hours_per_week_entry = tk.Entry(root)
-#hours_per_week_entry.pack()
+hours_per_week_entry.pack()
 
+# Takes in amount of days per week 
+days_per_week_label = tk.Label(root, text="Days per Week")
+days_per_week_label.pack()
+days_per_week_entry = tk.Entry(root)
+days_per_week_entry.pack()
 
 # Takes in amount of holiday days off 
 holiday_label = tk.Label(root, text="Holiday per year")
-#holiday_label.pack()
+holiday_label.pack()
 holiday_entry = tk.Entry(root)
-#holiday_entry.pack()
+holiday_entry.pack()
 
 
 # Takes in amount of vacation days off
 vacations_days_label = tk.Label(root, text="Vacation days per year")
-#vacations_days_label.pack()
+vacations_days_label.pack()
 vacation_days_entry = tk.Entry(root)
-#vacation_days_entry.pack()
+vacation_days_entry.pack()
 
 
-calculate_button = tk.Button(root, text='Calculate', command=lambda: calculate(salary_entry.get(), hours_per_week_entry.get(), holiday_entry.get(), vacation_days_entry.get()))
-#calculate_button.pack()
+calculate_button = tk.Button(root, text='Calculate', command=lambda: calculate(salary_entry.get(), hours_per_week_entry.get(), days_per_week_entry.get(), holiday_entry.get(), vacation_days_entry.get(), root))
+calculate_button.pack()
 
 
 root.mainloop()
