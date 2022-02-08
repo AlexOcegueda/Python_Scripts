@@ -12,19 +12,39 @@ import tkinter as tk
 '''''
 
 
-def convert_to_fahrenheit(temperature_entry):
-    print("cel")
+def get_valid_float(user_input):
+    try:
+        float(user_input)
+        return True
+
+    except ValueError:
+        error_label = tk.Label(root, text="Must Enter a Number!")
+        error_label.pack()
 
 
-def convert_to_celsius(temperature_entry):
-    print("cel")
+def convert_to_fahrenheit(celsius_input):
+
+    while get_valid_float(celsius_input):
+        # this is the fahrenheit formula
+        f = (float(celsius_input) * 9 / 5) + 32
+        print(f)
+        break
+
+
+def convert_to_celsius(fahrenheit_input):
+
+    while get_valid_float(fahrenheit_input):
+        # this is the fahrenheit formula
+        c = (float(fahrenheit_input) * 5 / 9) + 32
+        print(c)
+        break
 
 
 root = tk.Tk()
 root.title("Temperature Converter")
 root.geometry("300x300")
 
-temperature_label = tk.Label(root, text="Enter Temperature to Convert ")
+temperature_label = tk.Label(root, text="Enter Temperature to Convert ", )
 temperature_label.pack()
 temperature_entry = tk.Entry(root, width=5)
 temperature_entry.pack()
