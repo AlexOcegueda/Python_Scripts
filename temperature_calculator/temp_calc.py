@@ -11,18 +11,13 @@ import tkinter as tk
                             f = c * 9 / 5 + 32
 '''''
 
-def calculate_adjusted_salary(salary, total_hours_per_week, days_per_week, holidays, vacations):
+def convert_to_fahrenheit(temperature_entry):
 
-    print('Null')
+  print("cel")
 
-# Calculates their unadjusted salary and adjusted salary and displays it on screen
-def calculate(salary, total_hours_per_week, days_per_week, holidays, vacations, root):
-  
-  print('Null')
+def convert_to_celsius(temperature_entry):
 
-def convert_to_celsius():
-
-    print("cel")
+  print("cel")
 
 root = tk.Tk()
 root.title("Temperature Converter")
@@ -36,15 +31,14 @@ temperature_entry.pack()
 
 
 # Takes in amount of hours per week 
-fahrenheit_label = tk.Button(root, text="Fahrenheit")
+fahrenheit_label = tk.Button(root, text="Fahrenheit", command=lambda: convert_to_fahrenheit(temperature_entry.get()))
 fahrenheit_label.pack()
 
 # Takes in amount of days per week 
-celsius_label = tk.Button(root, text="Celsius")
+celsius_label = tk.Button(root, text="Celsius", command=lambda: convert_to_celsius(temperature_entry.get()))
 celsius_label.pack()
 
-calculate_button = tk.Button(root, text='Calculate', command=lambda: print('gt'))
-calculate_button.pack()
+
 
 
 root.mainloop()
