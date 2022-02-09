@@ -18,7 +18,7 @@ def get_valid_range():
     if 0 < float(temperature_entry.get()) < 250:
         return True
     else:
-        error_message = tk.Label(root, text='Must Enter Between 0-250')
+        error_message = tk.Label(root, text='Limit 0 - 250')
         error_message.place(relx=.25, rely=.7)
        
         
@@ -38,16 +38,16 @@ def get_valid_float():
 # converts celsius to fahrenheit
 def convert_to_fahrenheit():
 
-    get_valid_range()
+    if get_valid_range():
 
-    while get_valid_float():
-        # this is the fahrenheit formula
-        f = (float(temperature_entry.get()) * 9 / 5) + 32
-        
-        output = (f'Your F temp is {round(f, 1)}')
-        f_output_label = tk.Label(root, text=output)
-        f_output_label.place(relx=.25, rely=.6)
-        break
+        if get_valid_float():
+            # this is the fahrenheit formula
+            f = (float(temperature_entry.get()) * 9 / 5) + 32
+            
+            output = (f'Your F temp is {round(f, 1)}')
+            f_output_label = tk.Label(root, text=output)
+            f_output_label.place(relx=.25, rely=.6)
+           
 
 # converts fahrenheit to Celsius
 def convert_to_celsius():
