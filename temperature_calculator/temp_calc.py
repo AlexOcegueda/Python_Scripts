@@ -19,8 +19,7 @@ def destroy_label(label):
     label.destroy()
 
 
-def get_valid_range():
-
+def get_valid_range(root, temperature_entry):
     if 0 < float(temperature_entry.get()) < 250:
         return True
     else:
@@ -30,7 +29,7 @@ def get_valid_range():
 
 
 # Only returns true if the
-def get_valid_float():
+def get_valid_float(root, temperature_entry):
     try:
         float(temperature_entry.get())
         return True
@@ -42,10 +41,10 @@ def get_valid_float():
 
 
 # converts celsius to fahrenheit
-def convert_to_fahrenheit():
-    if get_valid_float():
+def convert_to_fahrenheit(root, temperature_entry):
+    if get_valid_float(root, temperature_entry):
 
-        if get_valid_range():
+        if get_valid_range(root, temperature_entry):
             # this is the fahrenheit formula
             f = (float(temperature_entry.get()) * 9 / 5) + 32
 
@@ -57,10 +56,10 @@ def convert_to_fahrenheit():
 
 
 # converts fahrenheit to Celsius
-def convert_to_celsius():
-    if get_valid_float():
+def convert_to_celsius(root, temperature_entry):
+    if get_valid_float(root, temperature_entry):
 
-        if get_valid_range():
+        if get_valid_range(root, temperature_entry):
             # this is the fahrenheit formula
             c = (float(temperature_entry.get()) * 5 / 9) + 32
 
@@ -72,34 +71,53 @@ def convert_to_celsius():
             root.after(4000, destroy_label, c_output_label)
 
 
-def main():
-    
-    Font_tuple = ("Comic Sans MS", 23, "bold")
-    root = tk.Tk()
-    root.title("Temperature Converter")
-    title_label = tk.Label(root, text='Temperature Converter')
-    title_label.configure(font=Font_tuple)
-    title_label.place(relx=.03, rely=.1)
-    root.geometry("300x250")
+def display_title(root):
+    title_font = ("Comic Sans MS", 23, "bold")
 
+    title_label = tk.Label(root, text='Temperature Converter')
+    title_label.configure(font=title_font)
+    title_label.place(relx=.03, rely=.1)
+
+
+# displays and returns the user's input
+def display_temperature_input(root):
+    # Label and button to take input to convert
     temperature_label = tk.Label(root, text="Enter Temperature:", )
     temperature_label.place(relx=.1, rely=.3)
     temperature_entry = tk.Entry(root, width=3)
     temperature_entry.place(relx=.7, rely=.3)
+    return temperature_entry
 
-    # Button which converts celsius input into fahrenheit
-    fahrenheit_label = tk.Button(root, text="C to F", bg='red', fg='white', command=convert_to_fahrenheit)
+
+def display_fahrenheit_button(root, user_input):
+    fahrenheit_label = tk.Button(root, text="C to F", bg='red', fg='white',
+                                 command=lambda: convert_to_fahrenheit(root, user_input))
     fahrenheit_label.place(relx=.2, rely=.4)
 
-    # Button which converts fahrenheit input into celsius
-    celsius_label = tk.Button(root, text="F to C", bg='blue', fg='white', command=convert_to_celsius)
+
+def display_celsius_button(root, user_input):
+    celsius_label = tk.Button(root, text="F to C", bg='blue', fg='white',
+                              command=lambda: convert_to_celsius(root, user_input))
     celsius_label.place(relx=.6, rely=.4)
+
+
+def main():
+    root = tk.Tk()
+    root.title("Temperature Converter")
+    root.geometry("300x250")
+    display_title(root)
+
+    # displays temperature input for users and assigns it
+    user_input = display_temperature_input(root)
+
+    # Button which converts celsius input into fahrenheit when clicked
+    display_fahrenheit_button(root, user_input)
+
+    # Button which converts fahrenheit input into celsius when clicked
+    display_celsius_button(root, user_input)
 
     root.mainloop()
 
 
 if __name__ == '__main__':
     main()
-
-
-
