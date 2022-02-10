@@ -5,7 +5,8 @@ import tkinter as tk
 
 '''''
   Name: Temperature Calculator
-  Programmer: Alex Ocegueda -> Git: https://github.com/AlexOcegueda/Salary_Calculator
+  Programmer: Alex Ocegueda -> Git: https://github.com/AlexOcegueda/Python_Assignments
+  Date: 2.9.22
   Version: 1.0
   Description: Converts your input into celsius or fahrenheit. It only accepts values 
                 between 0 and 250. 
@@ -18,7 +19,7 @@ import tkinter as tk
 def destroy_label(label):
     label.destroy()
 
-
+# Only returns true if user enters numbers in the range of 0 - 250
 def get_valid_range(root, temperature_entry):
     if 0 < float(temperature_entry.get()) < 250:
         return True
@@ -28,7 +29,7 @@ def get_valid_range(root, temperature_entry):
         root.after(2500, destroy_label, error_message)
 
 
-# Only returns true if the
+# Only returns true if the user entered a string with NO letters or symbols
 def get_valid_float(root, temperature_entry):
     try:
         float(temperature_entry.get())
@@ -52,7 +53,7 @@ def convert_to_fahrenheit(root, temperature_entry):
             output = f'Your F temp is {round(f, 1)}'
             f_output_label = tk.Label(root, text=output)
             f_output_label.place(relx=.25, rely=.6)
-            root.after(4000, destroy_label, f_output_label)
+            root.after(3000, destroy_label, f_output_label)
 
 
 # converts fahrenheit to Celsius
@@ -68,7 +69,7 @@ def convert_to_celsius(root, temperature_entry):
 
             c_output_label = tk.Label(root, text=output)
             c_output_label.place(relx=.25, rely=.6)
-            root.after(4000, destroy_label, c_output_label)
+            root.after(3000, destroy_label, c_output_label)
 
 
 def display_title(root):

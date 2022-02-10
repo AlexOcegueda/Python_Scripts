@@ -51,17 +51,22 @@ def calculate(salary, total_hours_per_week, days_per_week, holidays, vacations, 
   unadjusted_salary.pack()
 
 
+def main():
+  root = tk.Tk()
+  root.title("Salary Calculator")
+  root.geometry("300x300")
 
-root = tk.Tk()
-root.title("Salary Calculator")
-root.geometry("300x300")
+if __name__ == '__main__':
+  main()
+
+
 
 
 # Takes in amount of Salary
-salary_label = tk.Label(root, text="Salary per Hour")
-salary_label.pack()
-salary_entry = tk.Entry(root)
-salary_entry.pack()
+salary_per_hour_label = tk.Label(root, text="Salary per Hour")
+salary_per_hour_label.pack()
+salary_per_hour_entry = tk.Entry(root)
+salary_per_hour_entry.pack()
 
 
 # Takes in amount of hours per week 
@@ -77,15 +82,15 @@ days_per_week_entry = tk.Entry(root)
 days_per_week_entry.pack()
 
 # Takes in amount of holiday days off 
-holiday_label = tk.Label(root, text="Holiday per year")
-holiday_label.pack()
-holiday_entry = tk.Entry(root)
-holiday_entry.pack()
+holidays_off_per_year_label = tk.Label(root, text="Holiday per year")
+holidays_off_per_year_label.pack()
+holidays_off_per_year_entry = tk.Entry(root)
+holidays_off_per_year_entry.pack()
 
 
 # Takes in amount of vacation days off
-vacations_days_label = tk.Label(root, text="Vacation days per year")
-vacations_days_label.pack()
+vacation_days_off_per_year_label = tk.Label(root, text="Vacation days per year")
+vacation_days_off_per_year_label.pack()
 vacation_days_entry = tk.Entry(root)
 vacation_days_entry.pack()
 
