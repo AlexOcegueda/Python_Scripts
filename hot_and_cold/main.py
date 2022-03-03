@@ -18,6 +18,76 @@ fill_color = 'pink'
 # key listeners: s = hidden object H = hides the object R = reset the game
 
 
+def move_home():
+    """
+    Reset the x and y back to zero coordinate which will be used position the circle in the center
+    then call draw_circle to clear & redraw the circle is on the screen based on its new location
+
+    Returns:
+        None
+    """
+
+    global x, y
+    x = 0  # center of screen moving right or left
+    y = 0  # center of screen moving up or down
+    draw_circle()
+
+
+def move_up():
+    """
+    Add 20 to the y coordinate which will be used move the circle up
+    then call draw_circle to clear & redraw the circle is on the screen based on its new location
+
+    Returns:
+        None
+    """
+
+    global y
+    y += 20  # move top of center
+    draw_circle()
+
+
+def move_down():
+    """
+    Subtract 20 from y coordinate which will be used move the circle to the down
+    then call draw_circle to clear & redraw the circle is on the screen based on its new location
+    Returns:
+        None
+    """
+
+    global y
+    y -= 20  # move down of center
+    draw_circle()
+
+
+def move_right():
+    """
+    Add 20 to the x coordinate which will be used move the circle to the right
+    then call draw_circle to clear & redraw the circle is on the screen based on its new location
+
+    Returns:
+        None
+    """
+
+    global x
+    x += 20  # move to the right of center
+    draw_circle()
+
+
+def move_left():
+    """
+    Subtract 20 from the x coordinate which will be used move the circle to the left
+    then call draw_circle to clear & redraw the circle is on the screen based on its new location
+
+    Returns:
+        None
+    """
+
+    global x
+    x -= 20  # move to the left of center
+    draw_circle()
+
+
 def draw_circle(diameter=10):
     """
     clear the screen and draw the circle based on the x & y coordinates
@@ -53,6 +123,32 @@ def draw_circle(diameter=10):
     pen.end_fill()  # done drawing the object to complete the fill
 
 
+def setup_window(bg_color='white'):
+    """
+    Controls how the window looks.
+
+    Args:
+        bg_color (str): the background color of the window (default white)
+
+    Returns:
+        None
+    """
+    screen.tracer(False)  # turn animation off which causes screen flickering as the circle gets redrawn
+
+    # pen.screen.tracer(False)
+    screen.title('Moving Circle')  # title the title bar of the window
+    screen.bgcolor(bg_color)  # set the window's background color
+    screen.setup(800, 900)  # the size of the window
+
+    # set up the keys to listen to and what function should be called
+    screen.onkeypress(move_home, "h")
+    screen.onkeypress(move_up, "Up")
+    screen.onkeypress(move_down, "Down")
+    screen.onkeypress(move_right, "Right")
+    screen.onkeypress(move_left, "Left")
+    screen.listen()  # start listening for keys being pressed
+
+
 def main():
     """
     The main function, used to test drawing a square
@@ -60,8 +156,8 @@ def main():
     Returns:
         None
     """
-
-    draw_circle()
+    setup_window('black')
+    draw_circle(50)
     turtle.mainloop()
 
 
