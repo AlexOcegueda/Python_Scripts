@@ -2,8 +2,8 @@ import turtle
 import random
 
 # This sets the location of the user's coordinates
-x = 0  # right left
-y = 0  # up down
+user_x = 0  # right left
+user_y = 0  # up down
 
 # This sets the location coordinates of the hidden circle
 hidden_x = 0
@@ -50,7 +50,7 @@ def set_hidden_circle():
     Returns:
 
     """
-    set_hidden_location()  # Generate random location for hidden turtle
+
     hidden_circle = turtle.Turtle()
     hidden_circle.goto(hidden_x, hidden_y)
 
@@ -69,9 +69,9 @@ def move_home():
         None
     """
 
-    global x, y
-    x = 0  # center of screen moving right or left
-    y = 0  # center of screen moving up or down
+    global user_x, user_y
+    user_x = 0  # center of screen moving right or left
+    user_y = 0  # center of screen moving up or down
     draw_circle()
 
 
@@ -84,8 +84,8 @@ def move_up():
         None
     """
 
-    global y
-    y += 20  # move top of center
+    global user_y
+    user_y += 20  # move top of center
     draw_circle()
 
 
@@ -97,8 +97,8 @@ def move_down():
         None
     """
 
-    global y
-    y -= 20  # move down of center
+    global user_y
+    user_y -= 20  # move down of center
     draw_circle()
 
 
@@ -111,8 +111,8 @@ def move_right():
         None
     """
 
-    global x
-    x += 20  # move to the right of center
+    global user_x
+    user_x += 20  # move to the right of center
     draw_circle()
 
 
@@ -125,25 +125,20 @@ def move_left():
         None
     """
 
-    global x
-    x -= 20  # move to the left of center
+    global user_x
+    user_x -= 20  # move to the left of center
     draw_circle()
 
 
-def draw_circle(diameter=10):
+def draw_circle():
     """
     clear the screen and draw the circle based on the x & y coordinates
 
-    Args:
-        diameter (int): the diameter size of the circle (default 10)
-        fill_color (str): the inside color of the circle (default red)
-
     Returns:
         None
-        :param pen: Turtle which the user controls
     """
 
-    global x, y
+    global user_x, user_y
 
     pen.hideturtle()  # don't show the icon
     pen.speed('fastest')  # draw quickly
@@ -156,8 +151,10 @@ def draw_circle(diameter=10):
     pen.pencolor('white')  # text color
     pen.write("Use arrows to move, or press 'h' for home", font=("Verdana", 12, "bold"))
 
+    set_hidden_circle()
+
     # draw circle
-    pen.goto(x, y)  # move to the updated x (left-right) and y (up-down) location from center
+    pen.goto(user_x, user_y)  # move to the updated x (left-right) and y (up-down) location from center
     pen.pendown()  # start drawing the outline of the circle
     pen.fillcolor(pen_color)  # fill color of the circle
     pen.begin_fill()  # start the fill of whatever is being drawn
@@ -183,7 +180,7 @@ def setup_window(bg_color='white'):
     screen.setup(800, 900)  # the size of the window
 
     # set up the keys to listen to and what function should be called
-    screen.onkeypress(debug, "s")
+    screen.onkeypress(debug, "d")
     screen.onkeypress(move_home, "h")
     screen.onkeypress(move_up, "Up")
     screen.onkeypress(move_down, "Down")
@@ -200,7 +197,8 @@ def main():
         None
     """
     setup_window('black')
-    draw_circle(50)
+    set_hidden_location()  # Generate random location for hidden turtle
+    draw_circle()
     set_hidden_circle()
     turtle.mainloop()
 
