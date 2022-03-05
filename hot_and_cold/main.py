@@ -28,7 +28,8 @@ user_circle_size = 50
 # these values will change by plus/minus 20 as arrows are pressed
 user_x = 0  # center of screen moving right or left
 user_y = 0  # center of screen moving up or down
-fill_color = 'red'  # the color of the circle
+previous_x = 0
+previous_y = 0
 
 
 def debug():
@@ -112,6 +113,31 @@ def move_down():
     display_game()
 
 
+def check_hot_or_cold():
+    global previous_x, previous_y, user_circle_color, hidden_circle_color
+
+    overlap = user_circle_size * 2 - 10
+
+    if abs(user_x - hidden_x) < overlap and abs(user_y - hidden_y) < overlap:
+        hidden_circle_color = 'green yellow'
+        user_circle_color = 'green'
+    else:
+        if previous_x != user_x:
+            if abs(previous_x - hidden_x) > abs(user_x - hidden_x):
+                user_circle_color = 'red'
+            else:
+                user_color = 'blue'
+
+        if previous_y != user_y:
+            if abs(previous_y - hidden_y) > abs(user_y - hidden_y):
+                user_color = 'red'
+            else:
+                user_color = 'blue'
+
+    previous_x = user_x
+    previous_y = user_y
+
+
 def setup_window():
     """
     Controls how the window looks.
@@ -143,8 +169,22 @@ def set_hidden_location():
     """
 
     global hidden_x, hidden_y
-    hidden_x = random.randint(-420, 420)  # left & right max: -420 & 420
-    hidden_y = random.randint(-300, 300)  # bottom & top max: -300 & 300
+    while True:
+        hidden_x = random.randint(-420, 420)  # left & right max: -420 & 420
+        hidden_y = random.randint(-300, 300)  # bottom & top max: -300 & 300
+
+        # This checks to see if hidden circle is too close to user circle when placed
+        if abs(hidden_x) > (user_circle_size * 2 + 10) and abs(hidden_y) > (user_circle_size * 2 + 10):
+            break
+
+
+def set_user_location():
+    global user_x, user_y
+
+    center_pos = int(user_circle_size / 2) * -1
+
+    user_x = center_pos
+    user_y = center_pos
 
 
 def draw_instructions():
@@ -226,9 +266,10 @@ def main():
     Returns:
         None
     """
-    game_menu()
+    # game_menu()
 
     setup_window()  # configure how the turtle window screen will look like
+    set_user_location()
     set_hidden_location()  # displays a fresh location
     display_game()  # draws everything on screen according to user input
     screen.mainloop()  # keep the turtle window open until the user closes it
