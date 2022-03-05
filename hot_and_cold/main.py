@@ -2,18 +2,21 @@
 
 """
 This module contains functions related to drawing and moving a circle around the screen
+to find a hidden circle somewhere on the screen. Your circle will change colors depending
+on if you were closer before you moved or after. Red means you are hotter and blue means
+you are farther
 """
 
 __author__ = 'Debbie Johnson, Alex Ocegueda'
 __version__ = '2.0'
 __copyright__ = "Copyright 2022.02.17, Chapter 4 Assignment"
-__github__ = "https://github.com/dejohns2/CSC365_Spring2022_Code_Examples"
+__github__ = "https://github.com/AlexOcegueda/Python_Assignments.git"
 
 import random
 import turtle
 
-screen = None
-user = None
+screen = None  # Displays everything
+user = None  # turtle to create everything
 
 hidden_x = 100  # x-coord of hidden circle
 hidden_y = 100  # y-coord of hidden circle
