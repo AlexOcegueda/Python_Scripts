@@ -19,6 +19,7 @@ import tkinter as tk
 def destroy_label(label):
     label.destroy()
 
+
 # Only returns true if user enters numbers in the range of 0 - 250
 def get_valid_range(root, temperature_entry):
     if 0 < float(temperature_entry.get()) < 250:
