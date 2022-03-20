@@ -10,7 +10,7 @@ you are farther
 __author__ = 'Debbie Johnson, Alex Ocegueda'
 __version__ = '2.0'
 __copyright__ = "Copyright 2022.02.17, Chapter 4 Assignment"
-__github__ = "https://github.com/AlexOcegueda/Python_Assignments.git"
+__github__ = "https://github.com/AlexOcegueda/Python_Assignments/"
 
 import random
 import turtle
