@@ -34,12 +34,12 @@ class MyWindow(QtWidgets.QWidget):
     def setup_window(self):
         welcome_label = QtWidgets.QLabel("Welcome!")
         welcome_label.setFont(qtg.QFont("Helvetica", 18))
-
         self.layout().addWidget(welcome_label)
 
         entry_box = QtWidgets.QLineEdit()
-        entry_box.setObjectName("Planet Name Question")
-
+        entry_box.setObjectName("Entry_Planet_Field")
+        entry_box.setText("Enter Planet Name")
+        self.layout().addWidget(entry_box)
 
 def main():
     app = QApplication(sys.argv)
