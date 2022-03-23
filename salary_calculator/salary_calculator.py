@@ -12,7 +12,6 @@ import tkinter as tk
 __program_name__ = 'Salary Calculator'
 __author__ = 'Alex Ocegueda'
 __version__ = '2.0'
-__copyright__ = "Copyright 2022.02.17, Chapter 4 Assignment"
 __github__ = "https://github.com/AlexOcegueda/Python_Assignments/salary_calculator"
 
 

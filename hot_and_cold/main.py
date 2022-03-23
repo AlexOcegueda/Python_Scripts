@@ -7,9 +7,9 @@ on if you were closer before you moved or after. Red means you are hotter and bl
 you are farther
 """
 
-__author__ = 'Debbie Johnson, Alex Ocegueda'
-__version__ = '2.0'
-__copyright__ = "Copyright 2022.02.17, Chapter 4 Assignment"
+__program_name__ = "Hot and Cold"
+__author__ = "Debbie Johnson, Alex Ocegueda"
+__version__ = "2.0"
 __github__ = "https://github.com/AlexOcegueda/Python_Assignments/"
 
 import random
@@ -21,9 +21,9 @@ user = None  # turtle to create everything
 hidden_x = 100  # x-coord of hidden circle
 hidden_y = 100  # y-coord of hidden circle
 hidden_circle_size = 50  # sets how difficult it is to find
-hidden_circle_color = 'black'  # set to black to be invisible
+hidden_circle_color = "black"  # set to black to be invisible
 
-user_circle_color = 'pink'  # user circle is default to pink until it gets hot or cold
+user_circle_color = "pink"  # user circle is default to pink until it gets hot or cold
 user_circle_size = 10  # sets the size of the circle - this affects difficulty.
 move_size = None  # number of steps taken by user
 move_limit = 20  # number of steps limited before game over - set by user also.
@@ -43,7 +43,7 @@ def reset_game():
 
     """
     global hidden_circle_color
-    hidden_circle_color = 'black'
+    hidden_circle_color = "black"
     main()
 
 
@@ -54,7 +54,7 @@ def debug():
 
     """
     global hidden_circle_color
-    hidden_circle_color = 'white'
+    hidden_circle_color = "white"
     display_game()
 
 
@@ -140,20 +140,20 @@ def check_hot_or_cold():
     overlap = user_circle_size * 2 - 10
 
     if abs(user_x - hidden_x) < overlap and abs(user_y - hidden_y) < overlap:
-        hidden_circle_color = 'green yellow'
-        user_circle_color = 'green'
+        hidden_circle_color = "green yellow"
+        user_circle_color = "green"
     else:
         if previous_x != user_x:
             if abs(previous_x - hidden_x) > abs(user_x - hidden_x):
-                user_circle_color = 'red'
+                user_circle_color = "red"
             else:
-                user_circle_color = 'blue'
+                user_circle_color = "blue"
 
         if previous_y != user_y:
             if abs(previous_y - hidden_y) > abs(user_y - hidden_y):
-                user_circle_color = 'red'
+                user_circle_color = "red"
             else:
-                user_circle_color = 'blue'
+                user_circle_color = "blue"
 
     previous_x = user_x
     previous_y = user_y
@@ -182,8 +182,8 @@ def setup_window():
     """
 
     screen.tracer(False)  # turn animation off which causes screen flickering as the circle gets redrawn
-    screen.title('Hot or Cold')  # title the title bar of the window
-    screen.bgcolor('black')  # set the window's background color
+    screen.title("Hot or Cold")  # title the title bar of the window
+    screen.bgcolor("black")  # set the window's background color
     screen.setup(800, 900)  # the size of the window
 
     # set up the keys to listen to and what function should be called
@@ -228,14 +228,14 @@ def set_user_settings():
     move_size = -1
 
     try:
-        user_circle_size = int(turtle.numinput('Circle', 'Size of circles (10-100)'))
+        user_circle_size = int(turtle.numinput("Circle", "Size of circles (10-100)"))
         hidden_circle_size = user_circle_size
     except:
         user_circle_size = 50
         hidden_circle_size = 50
 
     try:
-        move_limit = int(turtle.numinput('Circle', 'Size of move (10-100)'))
+        move_limit = int(turtle.numinput("Circle", "Size of move (10-100)"))
     except:
         move_limit = 50
 
@@ -279,7 +279,7 @@ def draw_user_circle():
 
     """
 
-    user.speed('fastest')  # draw quickly
+    user.speed("fastest")  # draw quickly
 
     # draw circle
     user.goto(user_x, user_y)  # move to the updated x (left-right) and y (up-down) location from center
@@ -300,7 +300,7 @@ def display_game():
     user.hideturtle()  # don't show the icon
     check_hot_or_cold()
     check_move_limit()
-    user.pencolor('black')
+    user.pencolor("black")
     user.penup()  # avoid a trail when drawing next object
     draw_user_circle()
     user.penup()  # avoid a trail when drawing next object
@@ -323,7 +323,7 @@ def main():
 
 
 # if this is the program starting module, then run the main function
-if __name__ == '__main__':
+if __name__ == "__main__":
     screen = turtle.Screen()
     user = turtle.Turtle(visible=False)
     main()
