@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMessageBox
+from PyQt5.QtWidgets import QApplication
 import PyQt5.QtGui as qtg
 import sys
 
@@ -45,18 +45,6 @@ class MyWindow(QtWidgets.QWidget):
 
         self.show()
 
-        def destroy_label(label):
-            label.destroy()
-
-        def clear_screen(self, planet_list):
-            print('clear')
-
-            try:
-                for planet in planet_list:
-                    destroy_label()
-            except:
-                print("error")
-
         def display_results():
             """
 
@@ -70,8 +58,6 @@ class MyWindow(QtWidgets.QWidget):
 
             planet_distance_list = [["Mercury", 46], ["Venus", 107], ["Earth", 147], ["Mars", 205],
                                     ["Jupiter", 741], ["Saturn", 1350], ["Uranus", 2750], ["Neptune", 4450]]
-
-            clear_screen(planet_distance_list)
 
             # need to store distance of chosen planet for distance between
             for planet in planet_distance_list:
