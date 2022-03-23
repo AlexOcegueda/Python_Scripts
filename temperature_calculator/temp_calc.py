@@ -11,8 +11,8 @@
 import tkinter as tk
 
 __program_name__ = "Temperature Converter"
-__author__ = 'Alex Ocegueda'
-__version__ = '2.0'
+__author__ = "Alex Ocegueda"
+__version__ = "2.0"
 __github__ = "https://github.com/AlexOcegueda/Python_Assignments/temp_calc"
 
 

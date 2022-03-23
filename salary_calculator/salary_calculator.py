@@ -9,9 +9,9 @@ import tkinter as tk
     deducted.
 '''''
 
-__program_name__ = 'Salary Calculator'
-__author__ = 'Alex Ocegueda'
-__version__ = '2.0'
+__program_name__ = "Salary Calculator"
+__author__ = "Alex Ocegueda"
+__version__ = "2.0"
 __github__ = "https://github.com/AlexOcegueda/Python_Assignments/salary_calculator"
 
 

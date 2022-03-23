@@ -8,8 +8,9 @@ import sys
     displays how far all the other plants are from it. 
 """
 
-__author__ = 'Alex Ocegueda'
-__version__ = '1.0'
+__program_name__ = "Planet Distance Calculator"
+__author__ = "Alex Ocegueda"
+__version__ = "1.0"
 __github__ = "https://github.com/AlexOcegueda/Python_Assignments/planet_distance_calculator"
 
 
