@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
+"""
+    Converts your input into celsius or fahrenheit. It only accepts values
+    between 0 and 250.
+
+    It uses these formulas: c = (f - 32) * 5 / 9
+                           f = (c * 9 / 5) + 32
+"""
 
 import tkinter as tk
 
-'''''
-  Name: Temperature Calculator
-  Programmer: Alex Ocegueda -> Git: https://github.com/AlexOcegueda/Python_Assignments
-  Date: 2.9.22
-  Version: 1.0
-  Description: Converts your input into celsius or fahrenheit. It only accepts values 
-                between 0 and 250. 
-
-                It uses these formulas: c = (f - 32) * 5 / 9
-                                        f = (c * 9 / 5) + 32
-'''''
+__program_name__ = "Temperature Converter"
+__author__ = 'Alex Ocegueda'
+__version__ = '2.0'
+__github__ = "https://github.com/AlexOcegueda/Python_Assignments/temp_calc"
 
 
 def destroy_label(label):
