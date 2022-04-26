@@ -4,37 +4,44 @@ import student_data as data
 ###########################################################################################
 # This function is used by other functions to display a list of student's id & names
 ###########################################################################################
+import student_database.student_data
+
+
 def list_students(student_ids):
     for student_id in student_ids:
         print(student_id, data.students[student_id]['firstName'],
               data.students[student_id]['lastName'])
 
 
-###########################################################################################
-# Display the student information
-# Example of report
-# -----------------------------------
-# ID: 31 Bob Smith
-#	Groups: basketball, track, student council
-#	English [80, 100]
-#	Science [100, 80]
-###########################################################################################
 def student_information():
+    """
+    ###########################################################################################
+    # Display the student information
+    # Example of report
+    # -----------------------------------
+    # ID: 31 Bob Smith
+    #	Groups: basketball, track, student council
+    #	English [80, 100]
+    #	Science [100, 80]
+    ###########################################################################################
+    """
     print('=' * 80)
     print("Student Information")
     print('=' * 80)
 
+    # for key (student id), value (student info dict) in 2D data.students dict items
+    for student_id, student_info in data.students.items():
+        # display student id (key) and name (value)
+        print('ID:', student_id, student_info.get('firstName'), student_info.get('lastName'))
 
-# for loop for displaying the data
-# for key (student id), value (student info dict) in 2D data.students dict items
-# 	display student id (key) and name (value)
-#
-# 	for each group in student’s groups set
-# 		display the student’s group set using a print with end=’, ‘
-#
-# 	for key (class), value (class grades dict) in 2D grades dict items
-# 		if student id (outer key) in class grades dict
-#			display class (key), and student’s grade list (value)
+        print('\tGroups:', end=' ')
+        # unpack all groups and display by comma separated
+        print(*student_info.get('groups'), sep=',')
+
+        for grades in data.grades.items():
+            print(*grades.get(student_id), sep=', ')
+
+    print()
 
 
 ###########################################################################################
@@ -94,6 +101,7 @@ def each_class_genders():
     #
     #	append to the class gender dict, using the class as the key, and...
     #   a dict with female and male counts (see above example)
+
 
 ###########################################################################################
 # Sue Smith Class LIst
@@ -230,7 +238,7 @@ def student_classes_same_as_sue_smith():
 
 # sort same_as_sue_smith list
 
-#list_students(same_as_sue_smith)
+# list_students(same_as_sue_smith)
 
 
 ###########################################################################################
@@ -256,4 +264,4 @@ def students_with_low_grades():
 
     # convert to list and sort
 
-    #list_students(low_grades_list)
+    # list_students(low_grades_list)
