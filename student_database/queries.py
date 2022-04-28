@@ -50,23 +50,15 @@ def all_sports_list():
 
     sports = list()
 
-# building the sports list
-# --------------------------------------------------------------------------------------
 # for key (season), value (season sports set) in 2D data.sports dict items
     for season, season_sports in data.sports.items():
         # for each sport in season sports set
         for sport in season_sports:
             # add sport to sports list
             sports.append(sport)
-            
-    
-# 	converting the set to a list and using the extend function to append it...
-# 	nested the list function inside the extend function to do this with one statement
 
-# sort list
-
-# for loop for displaying the list
     print(*sports, sep=', ')
+
 def each_class_genders():
     """
     ###########################################################################################
@@ -91,20 +83,22 @@ def each_class_genders():
     print('=' * 80)
 
     class_genders = dict()
-
     # building the class_genders dictionary
     # --------------------------------------------------------------------------------------
-
-
-
     # for key (class name), value (class grades dict) in data.grades dict items
-        # initialize the class_
+    for class_name, class_grades in data.grades.items():
+    # initialize the class_
+        class_ = dict()
+        # for key (student id), value (student grades list) in class grades dict (value) items
+        for student_id, student_grades in class_grades.items():
+            student_gender = data.students
 
-    #
-    #	for key (student id), value (student grades list) in class grades dict (value) items
+            if student_id in data.students and student_id not in class_name:
+                # add student id (key) to class_
+                class_[student_id] = student_grades
+                
     #		get gender for the current student id (key) from the 2D data.students dict
     #		if to increment the correct gender counter
-    #
     #	append to the class gender dict, using the class as the key, and...
     #   a dict with female and male counts (see above example)
 
