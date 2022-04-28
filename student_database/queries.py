@@ -93,22 +93,26 @@ def each_class_genders():
                 Male += 1
             else:
                 Female += 1
-        class_genders[class_name] = dict('Male')
-    print(class_genders)
+
+        class_genders[class_name] = dict(Male=Male, Female=Female) 
+
+    for class_, genders in class_genders.items():
+        print(class_, genders)
 
 
 ###########################################################################################
 # Sue Smith Class LIst
 ###########################################################################################
 def sue_smith_class_list():
+
+
+
     print('=' * 80)
     print("Sue Smith Class List")
     print('=' * 80)
 
     sue_smith_classes = list()
 
-    # building the sue_smith_classes list
-    # --------------------------------------------------------------------------------------
     # for key (student id), value (student info dict) in 2d data.students dict items
     for student_id, student_info_dict in data.students.items():
         # get first and last names from the student info dict (value)
@@ -120,12 +124,12 @@ def sue_smith_class_list():
                 # if student id (outer key) in class grades dict (value)
                 if student_id in class_grades_dict:
                     # add the class name (key) to sue_smith_classes list with the append method
-                    sue_smith_classes.append(class_)
-
-
-    # sort the list
-
+                    sue_smith_classes.append(sue_smith_classes)
+    
     # for loop for displaying sue_smith_classes list
+    print(*sue_smith_classes, sep=', ')
+
+    
 
 ###########################################################################################
 # Students in Science not Math
@@ -140,14 +144,12 @@ def students_in_science_not_math():
     # building science_not_math list
     # --------------------------------------------------------------------------------------
     # for key (student id) in 2d students dict keys
-    for student_id in data.students.keys():
+    
     #	if student id (key) in data.grades Science and student id (key) NOT in data.grades Math
 
     #		append student id (key) to science_not_math list
 
     # sort the list
-
-    list_students(science_not_math)
 
 
 ###########################################################################################
