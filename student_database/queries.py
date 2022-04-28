@@ -37,8 +37,7 @@ def student_information():
 
         for subject, grades in data.grades.items():
             print('\t', subject, grades.get(student_id))
-        
-            
+
 
 ###########################################################################################
 # All Sports List
@@ -50,7 +49,7 @@ def all_sports_list():
 
     sports = list()
 
-# for key (season), value (season sports set) in 2D data.sports dict items
+    # for key (season), value (season sports set) in 2D data.sports dict items
     for season, season_sports in data.sports.items():
         # for each sport in season sports set
         for sport in season_sports:
@@ -58,6 +57,7 @@ def all_sports_list():
             sports.append(sport)
 
     print(*sports, sep=', ')
+
 
 def each_class_genders():
     """
@@ -83,24 +83,18 @@ def each_class_genders():
     print('=' * 80)
 
     class_genders = dict()
-    # building the class_genders dictionary
-    # --------------------------------------------------------------------------------------
-    # for key (class name), value (class grades dict) in data.grades dict items
-    for class_name, class_grades in data.grades.items():
-    # initialize the class_
-        class_ = dict()
-        # for key (student id), value (student grades list) in class grades dict (value) items
-        for student_id, student_grades in class_grades.items():
-            student_gender = data.students
 
-            if student_id in data.students and student_id not in class_name:
-                # add student id (key) to class_
-                class_[student_id] = student_grades
-                
-    #		get gender for the current student id (key) from the 2D data.students dict
-    #		if to increment the correct gender counter
-    #	append to the class gender dict, using the class as the key, and...
-    #   a dict with female and male counts (see above example)
+    for class_name, class_grades in data.grades.items():
+        Male = 0
+        Female = 0
+
+        for student_id in class_grades:
+            if data.students.get(student_id).get('gender') == 'M':
+                Male += 1
+            else:
+                Female += 1
+        class_genders[class_name] = dict('Male')
+    print(class_genders)
 
 
 ###########################################################################################
@@ -113,19 +107,25 @@ def sue_smith_class_list():
 
     sue_smith_classes = list()
 
+    # building the sue_smith_classes list
+    # --------------------------------------------------------------------------------------
+    # for key (student id), value (student info dict) in 2d data.students dict items
+    for student_id, student_info_dict in data.students.items():
+        # get first and last names from the student info dict (value)
+        first_name, last_name = student_info_dict
+        # if the first name = Sue and the last name = Smith
+        if first_name == 'Sue' & last_name == 'Smith':
+            # for key (class), value (class grades dict) in 2D data.grades dict items
+            for class_, class_grades_dict in data.grades.items():
+                # if student id (outer key) in class grades dict (value)
+                if student_id in class_grades_dict:
+                    # add the class name (key) to sue_smith_classes list with the append method
+                    sue_smith_classes.append(class_)
 
-# building the sue_smith_classes list
-# --------------------------------------------------------------------------------------
-# for key (student id), value (student info dict) in 2d data.students dict items
-#	get first and last names from the student info dict (value)
-#	if the first name = Sue and the last name = Smith
-#		for key (class), value (class grades dict) in 2D data.grades dict items
-#			if student id (outer key) in class grades dict (value)
-#				add the class name (key) to sue_smith_classes list with the append method
 
-# sort the list
+    # sort the list
 
-# for loop for displaying sue_smith_classes list
+    # for loop for displaying sue_smith_classes list
 
 ###########################################################################################
 # Students in Science not Math
@@ -140,7 +140,9 @@ def students_in_science_not_math():
     # building science_not_math list
     # --------------------------------------------------------------------------------------
     # for key (student id) in 2d students dict keys
+    for student_id in data.students.keys():
     #	if student id (key) in data.grades Science and student id (key) NOT in data.grades Math
+
     #		append student id (key) to science_not_math list
 
     # sort the list
