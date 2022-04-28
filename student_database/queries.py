@@ -4,9 +4,6 @@ import student_data as data
 ###########################################################################################
 # This function is used by other functions to display a list of student's id & names
 ###########################################################################################
-import student_database.student_data
-
-
 def list_students(student_ids):
     for student_id in student_ids:
         print(student_id, data.students[student_id]['firstName'],
@@ -34,15 +31,14 @@ def student_information():
         # display student id (key) and name (value)
         print('ID:', student_id, student_info.get('firstName'), student_info.get('lastName'))
 
-        print('\tGroups:', end=' ')
+        print('\tGroups: ', end='')
         # unpack all groups and display by comma separated
         print(*student_info.get('groups'), sep=',')
 
-        for grades in data.grades.items():
-            print(*grades.get(student_id), sep=', ')
-
-    print()
-
+        for subject, grades in data.grades.items():
+            print('\t', subject, grades.get(student_id))
+        
+            
 
 ###########################################################################################
 # All Sports List
@@ -54,36 +50,42 @@ def all_sports_list():
 
     sports = list()
 
-
 # building the sports list
 # --------------------------------------------------------------------------------------
 # for key (season), value (season sports set) in 2D data.sports dict items
-# 	append the current season’s sports set (value) to sports list by...
+    for season, season_sports in data.sports.items():
+        # for each sport in season sports set
+        for sport in season_sports:
+            # add sport to sports list
+            sports.append(sport)
+            
+    
 # 	converting the set to a list and using the extend function to append it...
 # 	nested the list function inside the extend function to do this with one statement
 
 # sort list
 
 # for loop for displaying the list
-
-
-###########################################################################################
-# Each Class Genders
-#
-# Example of class_gender dict:
-# -----------------------------------
-# 'math': {'Female': 3, 'Male': 1}
-# 'english': {'Female': 3, 'Male': 2}
-# 'science': {'Female': 3, 'Male': 2}
-#
-# Example of report
-# -----------------------------------
-# Math: Male = 1 Female = 3
-# English: Male = 2 Female = 3
-# Science: Male = 2 Female = 3
-#
-###########################################################################################
+    print(*sports, sep=', ')
 def each_class_genders():
+    """
+    ###########################################################################################
+    # Each Class Genders
+    #
+    # Example of class_gender dict:
+    # -----------------------------------
+    # 'math': {'Female': 3, 'Male': 1}
+    # 'english': {'Female': 3, 'Male': 2}
+    # 'science': {'Female': 3, 'Male': 2}
+    #
+    # Example of report
+    # -----------------------------------
+    # Math: Male = 1 Female = 3
+    # English: Male = 2 Female = 3
+    # Science: Male = 2 Female = 3
+    #
+    ###########################################################################################
+    """
     print('=' * 80)
     print("Each Class Genders")
     print('=' * 80)
@@ -92,8 +94,12 @@ def each_class_genders():
 
     # building the class_genders dictionary
     # --------------------------------------------------------------------------------------
+
+
+
     # for key (class name), value (class grades dict) in data.grades dict items
-    #	set male and female counters to 0
+        # initialize the class_
+
     #
     #	for key (student id), value (student grades list) in class grades dict (value) items
     #		get gender for the current student id (key) from the 2D data.students dict
