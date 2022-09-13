@@ -1,2 +1,2 @@
 # Python_Assignments
-This contains all my CSC 365 Python Assignments
+This contains small python scripts i've written.
