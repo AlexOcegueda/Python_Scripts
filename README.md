@@ -1,2 +1,2 @@
 # Python_Scripts
-This contains small python scripts i've written.
+This contains python scripts i've written.
